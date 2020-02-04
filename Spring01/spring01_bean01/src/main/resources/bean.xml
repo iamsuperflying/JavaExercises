@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--把对象的创建交给 spring 来管理-->
+<!--    第一种-->
+<!--    <bean id="accountService" class="com.flying.service.impl.AccountServiceImpl"/>-->
+<!--    第二种-->
+<!--    <bean id="instanceFactory" class="com.flying.factory.InstanceFactory" />-->
+<!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"/>-->
+<!--    第三种-->
+    <bean id="accountService" class="com.flying.factory.StaticFactory" factory-method="getAccountService"/>
+</beans>
