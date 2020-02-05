@@ -1,0 +1,92 @@
+## Spring 依赖注入.
+
+### 注入.
+
+#### 依赖函数注入
+
+| constructor-arg | 说明                 |
+| --------------- | -------------------- |
+| type            | 构造函数中参数的类型 |
+| index           | 构造函数中参数的坐标 |
+| name            | 构造函数中参数的名字 |
+| value           | 构造函数中参数的值   |
+| ref             | 构造函数中参数的     |
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--把对象的创建交给 spring 来管理-->
+    <bean id="accountService" class="com.flying.service.impl.AccountServiceImpl">
+        <constructor-arg name="name" value="Flying."/>
+        <constructor-arg name="age" value="18"/>
+        <constructor-arg name="birthday" ref="now"/>
+    </bean>
+
+    <bean id="now" class="java.util.Date"/>
+</beans>
+```
+
+### set 方式的注入
+
+#### 基本类型或 bean 对象的注入
+
+``` xml
+<bean id="accountService4Setter" class="com.flying.service.impl.AccountServiceImpl4Setter">
+    <property name="name" value="Flying."/>
+    <property name="age" value="18"/>
+    <property name="birthday" ref="now"/>
+</bean>
+```
+
+#### 集合类型的注入
+
+| 集合类型   | 使用标签         |
+| ---------- | ---------------- |
+| list[]     | array、list、set |
+| list       | array、list、set |
+| set        | array、list、set |
+| map        | map、props       |
+| properties | map、props       |
+
+```xml
+<bean id="accountService4Collection" class="com.flying.service.impl.AccountServiceImpl4Collection">
+    <property name="myStrings">
+        <array>
+            <value>string1</value>
+            <value>string2</value>
+            <value>string3</value>
+        </array>
+    </property>
+    <property name="myList">
+        <list>
+            <value>list1</value>
+            <value>list2</value>
+            <value>list3</value>
+        </list>
+    </property>
+    <property name="mySet">
+        <set>
+            <value>set1</value>
+            <value>set2</value>
+            <value>set3</value>
+        </set>
+    </property>
+    <property name="myMap">
+        <map>
+            <entry key="myMapKey1" value="myMapValue1"/>
+            <entry key="myMapKey2" value="myMapValue2"/>
+            <entry key="myMapKey3" value="myMapValue3"/>
+        </map>
+    </property>
+    <property name="myProps">
+        <props>
+            <prop key="myPropsKey1">myProp1</prop>
+            <prop key="myPropsKey2">myProp2</prop>
+            <prop key="myPropsKey3">myProp3</prop>
+        </props>
+    </property>
+</bean>
+```
+
